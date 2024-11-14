@@ -1,0 +1,94 @@
+--Ctms:
+insert into ctms values('12300789333','MAST','01788184097','Gazipur,Dhaka','mast@yahoo.com');
+insert into ctms values('12300789333','MAST','01788184098','Gazipur,Dhaka','mast@yahoo.com');
+
+--Ctmsuser:
+insert into ctmsuser values('1834653','9999','akash khan','customer','12300789333','01788184097');
+insert into ctmsuser values('1834653','9999','akash khan','driver','12300789333','01788184097');
+insert into ctmsuser values('1834654','10000','Md ridy','driver','12300789333','01788184097');
+insert into ctmsuser values('1834655','10001','kamal rahman','customer','12300789333','01788184097');
+insert into ctmsuser values('1834656','10002','shathi begum','customer','12300789333','01788184097');
+insert into ctmsuser values('1834657','10003','jony khan','driver','12300789333','01788184097');
+
+--Driver:
+insert into driver values('111','akash khan','male','kuratoli,dhaka','1995-01-23','01721520776','AB78892','1834653','driver','311');
+insert into driver values('112','Md ridy','male','gazipur,dhaka','1997-01-23','01721520369','AB78888','1834654','driver','312');
+insert into driver values('113','akash khan','male','kuratoli,dhaka','1995-01-23','01721520776','AB78892','1834653','driver','313');
+insert into driver values('114','akash khan','male','kuratoli,dhaka','1995-01-23','01721520776','AB78892','1834653','driver','314');
+insert into driver values('115','jony khan','male','pallabi,dhaka','1995-12-02','01721429837','AB78801','1834657','driver','315');
+insert into driver values('116','jony khan','male','pallabi,dhaka','1995-12-02','01721429837','AB78801','1834657','driver','316');
+
+--Customer:
+insert into customer values('211','kamal Rahman','male','2002-06-12','savar,dhaka','01754468966','1834655','customer','311','1');
+insert into customer values('212','kamal Rahman','male','2002-06-12','savar,dhaka','01754468966','1834655','customer','313','2');
+insert into customer values('213','shathi begum','female','2002-08-10','bashundhara,dhaka','01818309886','1834656','customer','314','3');
+insert into customer values('214','shathi begum','female','2002-08-10','bashundhara,dhaka','01818309886','1834656','customer','315','4');
+insert into customer values('215','akash khan','male','1995-01-23','kuratoli,dhaka','01818309886','1834656','customer','314','5');
+
+--Ride:
+insert into ride values('311','dhanmondi','kuratoli','1hr','350','8.9','13.2km');
+insert into ride values('312','gazipur','kuratoli','2hr','350','8.9','22.2km');
+insert into ride values('313','dhanmondi','savar','2.5hr','500','8.9','24.2km');
+insert into ride values('314','kuratoli','mirpur','1.8hr','250','8.5','7.2km');
+insert into ride values('315','mirpur','airpoort','30min','150','8.9','4.2km');
+insert into ride values('316','komlapur','kuratoli','1hr','290','8.9','11.2km');
+
+--Cr:
+insert into cr values('211','01754468966','311'); 
+insert into cr values('212','01754468966','313'); 
+insert into cr values('213','01818309886','314'); 
+insert into cr values('214','01818309886','315'); 
+insert into cr values('215','01721520776','312'); 
+insert into cr values('215','01721520776','312');
+
+--Car:
+insert into car values('411','112233','4','red','car plus','311','111','01721520776');
+insert into car values('412','112232','4','white','premium','313','113','01721520776');
+insert into car values('413','112233','4','red','car plus','314','114','01721520776');
+insert into car values('414','112234','4','white','car plus','312','112','01721520369');
+insert into car values('415','112235','4','black','car plus','315','115','01721429837');
+insert into car values('416','112235','4','black','car plus','316','116','01721429837');
+
+--Repair:
+insert into repair values('511','1000','fuel','411','111','01721520776'); 
+insert into repair values('512','10000','tyre','411','111','01721520776'); 
+insert into repair values('513','5000','fuel','412','113','01721520776'); 
+insert into repair values('514','1000','fuel','413','114','01721520776'); 
+insert into repair values('515','1000','fuel','414','112','01721520369'); 
+insert into repair values('516','1000','fuel','415','115','01721429837'); 
+insert into repair values('517','15000','clean','416','116','01721429837');
+
+--Salary:
+insert into salary values('611','20000','12300789333','01788184097'); 
+insert into salary values('612','17000','12300789333','01788184097'); 
+insert into salary values('613','16500','12300789333','01788184097');
+
+--Ds:
+insert into ds values('111','01721520776','611'); 
+insert into ds values('113','01721520776','611'); 
+insert into ds values('114','01721520776','611'); 
+insert into ds values('112','01721520369','612'); 
+insert into ds values('115','01721429837','613'); 
+insert into ds values('116','01721429837','613');
+
+--Shift:
+insert into shift values('711','day','111','01721520776'); 
+insert into shift values('712','day','113','01721520776'); 
+insert into shift values('713','night','114','01721520776'); 
+insert into shift values('714','day','112','01721520369'); 
+insert into shift values('715','day','115','01721429837'); 
+insert into shift values('716','night','116','01721429837');
+
+--Offer:
+insert into offer values('811','NULL','12300789333','01788184097'); 
+insert into offer values('812','eid offer','12300789333','01788184097'); 
+insert into offer values('813','cupon','12300789333','01788184097'); 
+insert into offer values('814','cash back','12300789333','01788184097');
+
+--Co:
+insert into co values('211','01754468966','811','NULL'); 
+insert into co values('212','01754468966','812','eid offer'); 
+insert into co values('213','01818309886','812','eid offer'); 
+insert into co values('214','01818309886','811','NULL'); 
+insert into co values('215','01721520776','813','cupon'); 
+insert into co values('216','01721520776','814','cash back');

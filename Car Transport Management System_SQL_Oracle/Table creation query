@@ -1,0 +1,153 @@
+--ctms table creation
+
+create table ctms
+	(ctms_id bigint,
+	 ctms_name varchar(50),
+	 ctms_phone varchar(11),
+	 ctms_address varchar(500),
+	 ctms_email varchar(500),
+ constraint pk1 primary key(ctms_id,ctms_phone));
+  
+ --Ctmsuser table creation
+ 
+ create table ctmsuser(
+	  u_id bigint,
+	  password varchar(500),
+	  u_name varchar(50),
+	  u_type varchar(500),
+	  ctms_id bigint,
+	  ctms_phone varchar(11),
+  constraint pk5 primary key(u_id,u_type),
+  constraint fk1 foreign key(ctms_id,ctms_phone) 
+  references ctms(ctms_id,ctms_phone));
+   
+--Driver Table Creation:
+
+create table driver(
+	 d_id bigint,
+	 d_name varchar(50),
+	 d_gender varchar(50)check(d_gender='male' or d_gender='female'),
+	 d_address varchar(500),
+	 d_date_of_birth date,
+	 d_phone varchar(11),
+	 license_no varchar(50),
+	 u_id bigint,
+	 u_type varchar(500),
+	 r_id bigint,
+ constraint pk6 primary key(d_id,d_phone),
+ constraint fk6 foreign key(u_id,u_type) references ctmsuser(u_id,u_type));
+ 
+ alter table driver add constraint fk9 foreign key(r_id) references ride(r_id);
+ 
+--Customer table creation:
+create table customer(
+c_id bigint,
+c_name varchar(50),
+c_gender varchar(50)check(c_gender='male' or c_gender='female'),
+c_date_of_birth date,
+c_address varchar(500),
+c_phone varchar(11),
+u_id bigint,
+u_type varchar(500),
+r_id bigint,
+payment_no varchar(10),
+constraint pk7 primary key(c_id,c_phone),
+constraint fk7 foreign key(u_id,u_type) references ctmsuser(u_id,u_type));
+
+alter table customer add constraint fk8 foreign key(r_id) references ride(r_id);
+
+--Ride table creation:
+create table ride(
+	r_id bigint primary key,
+	pickup_location varchar(500),
+	drop_location varchar(500),
+	r_time varchar(50),
+	fare varchar(15),
+	rating varchar(15),
+	distance varchar(50),
+	payment_no varchar(10));
+	
+--Cr table creation:
+create table cr(
+	c_id bigint ,
+	c_phone varchar(11),
+	r_id bigint,
+	constraint pk8 primary key(c_id,c_phone,r_id),
+	constraint fk10 foreign key(c_id,c_phone) references customer(c_id,c_phone),
+	constraint fk11 foreign key(r_id) references ride(r_id));
+	
+--Car:
+
+create table car(
+	ca_id bigint primary key,
+	reg_no varchar(20),
+	seating_capacity varchar(10),
+	color varchar(10),
+	type varchar(10),
+	r_id bigint,
+	d_id bigint,
+	d_phone varchar(11),
+	constraint fk12 foreign key(r_id) references ride(r_id),
+	constraint fk13 foreign key(d_id,d_phone) references driver(d_id,d_phone));
+	
+alter table car add constraint ch check(type='car plus' or type='premium');
+
+--Repair table creation:
+create table repair(
+	re_id bigint ,
+	re_amount varchar(10),
+	re_type varchar(50),
+	ca_id bigint,
+	d_id bigint,
+	d_phone varchar(11),
+	constraint pk9 primary key(re_id,re_amount,re_type),
+	constraint fk14 foreign key(ca_id) references car(ca_id),
+	constraint fk15 foreign key(d_id,d_phone) references driver(d_id,d_phone));	
+	
+--Salary table creation:
+create table salary(
+	s_id bigint primary key,
+	s_amount varchar(10),
+	ctms_id bigint,
+	ctms_phone varchar(11),
+constraint fk16 foreign key(ctms_id,ctms_phone) references ctms(ctms_id,ctms_phone));
+
+--Ds table creation:
+create table ds(
+	d_id bigint,
+	d_phone varchar(11),
+	s_id bigint,
+	constraint pk10 primary key(d_id,d_phone,s_id),
+	constraint fk17 foreign key(d_id,d_phone) references driver(d_id,d_phone),
+	constraint fk18 foreign key(s_id) references salary(s_id));
+	
+--Shift table creation:
+create table shift(
+	sh_id bigint,
+	shift_type varchar(10),
+	d_id bigint,
+	d_phone varchar(11),
+	constraint pk11 primary key(sh_id,shift_type),
+	constraint fk19 foreign key(d_id,d_phone) references driver(d_id,d_phone));
+	
+alter table shift add constraint ch1 check(shift_type='day' or shift_type='night');
+
+--Offer table creation:
+create table offer(
+	o_id bigint,
+	o_type varchar(20),
+	ctms_id bigint,
+	ctms_phone varchar(11),
+	constraint pk12 primary key(o_id,o_type),
+constraint fk20 foreign key(ctms_id,ctms_phone) references ctms(ctms_id,ctms_phone));
+
+--Co table creation:
+create table co(
+	c_id bigint,
+	c_phone varchar(11),
+	o_id bigint,
+	o_type varchar(20),
+	constraint pk13 primary key(c_id,c_phone,o_id,o_type),
+	constraint fk21 foreign key(c_id,c_phone) references customer(c_id,c_phone),
+	constraint fk22 foreign key(o_id,o_type) references offer(o_id,o_type));
+	
